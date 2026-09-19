@@ -1,0 +1,8 @@
+.vscode/**
+.github/**
+.gitignore
+.nvmrc
+code-samples/**
+scripts/**
+package-lock.json
+**/*.vsix
