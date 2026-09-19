@@ -1,0 +1,23 @@
+
+trigger:
+- main
+
+
+steps:
+# Install VS Code Extension Manager (vsce >= v2.26.1 needed) and dependencies
+- script: |
+    cd .
+    npm install -g @vscode/vsce
+    npm install
+  displayName: "Install vsce and dependencies"
+
+# Publish
+- task: AzureCLI@2
+  displayName: 'Publish using managed identity'
+  inputs:
+    azureSubscription: vscode-publish-service-connection
+    scriptType: pscore
+    scriptLocation: inlineScript
+    inlineScript: |
+      cd .
+      vsce publish --azure-credential
